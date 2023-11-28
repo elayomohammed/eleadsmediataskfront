@@ -1,0 +1,6 @@
+.userDetailsFormControl {
+    background-color: var(--primary-bg-color);
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}

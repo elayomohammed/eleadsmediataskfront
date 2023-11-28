@@ -1,0 +1,28 @@
+#entryViewModalTopContainer {
+    display: none;
+    position: fixed;
+    top: 0%;
+    background-color: var(--primary-bg-color);
+    width: 99vw;
+    height: 100vh;
+    min-width: 100vw;
+    z-index: 100;
+}
+
+#entryViewModalContainer {
+    margin-top: 20px;
+    display: flex;
+    height: 88vh;
+    justify-content: center;
+    background-color: var(--secondary-bg-color);
+    box-shadow: -2px 2px;
+    padding-top: 10px;
+}
+
+#viewModalTitle {
+    margin-top: 2vh;
+}
+
+#entriesTable {
+    max-width: 98vw;
+}
