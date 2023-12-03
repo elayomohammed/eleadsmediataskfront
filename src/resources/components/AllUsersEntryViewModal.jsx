@@ -14,7 +14,7 @@ const AllUsersEntryViewModal = () => {
             }*/
             await axios.get('https://eleadsmediabackendtask.onrender.com/api/allEntries')
                 .then(res =>{
-                    console(res.data);
+                    console.log(res.data);
                     setAllEntries(() => res.data);
                 })
                 .catch(error =>{
