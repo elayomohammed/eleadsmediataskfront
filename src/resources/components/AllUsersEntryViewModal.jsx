@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+import axios from 'axios';
 require('../styles/allUsersEntryViewModal.css');
 
 const AllUsersEntryViewModal = () => {
@@ -6,11 +7,19 @@ const AllUsersEntryViewModal = () => {
     const [allEntries, setAllEntries] = useState([]);
     const getAllUsers = async () => {
         try{
-            const request = await fetch('http://localhost:3001/allEntries');
+            /*const request = await fetch('https://eleadsmediabackendtask.onrender.com/api/allEntries');
             if(request.ok){
                 const requestJson = await request.json();
                 setAllEntries(()=> requestJson);
-            }
+            }*/
+            await axios.get('https://eleadsmediabackendtask.onrender.com/api/allEntries')
+                .then(res =>{
+                    console(res.data);
+                    setAllEntries(() => res.data);
+                })
+                .catch(error =>{
+                    console.log(`moh says error retriving data...${error}`);
+                })
         }catch(error){
             console.log(`moh says error retriving data...${error}`);
         }

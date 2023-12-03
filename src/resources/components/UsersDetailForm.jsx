@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import AllUsersEntryViewModal from './AllUsersEntryViewModal';
 import { useAuth0 } from "@auth0/auth0-react";
+import axios from 'axios';
 require('buffer');
 require('../styles/usersDetailForm.css');
 
@@ -38,18 +39,28 @@ const UsersDetailForm = () => {
                 phone: userDetails.phone,
                 userID: userDetails.userID,
             };
-            const insertTx = await fetch('http://localhost:3001/insert', {
+
+            const headers = {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'}
+            /*const insertTx = await fetch('https://eleadsmediabackendtask.onrender.com/api/insert', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
                 body: JSON.stringify(reqBody),
-            });
+            });*/
+
+            axios.post('https://eleadsmediabackendtask.onrender.com/api/insert', reqBody, {headers})
+                .then(res =>{
+                    console.log(res.data);
+                })
+                .catch(error =>{
+                    console.error(`elayo says error inserting data: ${error}`);
+                });
     
-            if(insertTx.ok){
+            /*if(insertTx.ok){
                 const data = await insertTx.json();
                 console.log(data);
             }else{
                 console.error(`elayo say's error inserting data: ${insertTx.status}`);
-            }
+            }*/
         }catch(error){
             console.log(`error: ${error}`);
         }
