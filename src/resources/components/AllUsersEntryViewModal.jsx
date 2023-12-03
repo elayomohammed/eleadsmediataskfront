@@ -7,14 +7,8 @@ const AllUsersEntryViewModal = () => {
     const [allEntries, setAllEntries] = useState([]);
     const getAllUsers = async () => {
         try{
-            /*const request = await fetch('https://eleadsmediabackendtask.onrender.com/api/allEntries');
-            if(request.ok){
-                const requestJson = await request.json();
-                setAllEntries(()=> requestJson);
-            }*/
             await axios.get('https://eleadsmediabackendtask.onrender.com/api/allEntries')
                 .then(res =>{
-                    console.log(res.data);
                     setAllEntries(() => res.data);
                 })
                 .catch(error =>{

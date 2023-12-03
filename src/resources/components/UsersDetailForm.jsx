@@ -49,18 +49,10 @@ const UsersDetailForm = () => {
 
             axios.post('https://eleadsmediabackendtask.onrender.com/api/insert', reqBody, {headers})
                 .then(res =>{
-                    console.log(res.data);
                 })
                 .catch(error =>{
                     console.error(`elayo says error inserting data: ${error}`);
                 });
-    
-            /*if(insertTx.ok){
-                const data = await insertTx.json();
-                console.log(data);
-            }else{
-                console.error(`elayo say's error inserting data: ${insertTx.status}`);
-            }*/
         }catch(error){
             console.log(`error: ${error}`);
         }
