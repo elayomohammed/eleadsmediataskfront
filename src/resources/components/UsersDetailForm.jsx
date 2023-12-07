@@ -30,7 +30,7 @@ const UsersDetailForm = () => {
         });
     }
 
-    function validatedateOfBirthr(dateOfBirth) {
+    function validatedateOfBirth(dateOfBirth) {
         // Regular expression patterns for Nigeria and India phone numbers
       
         // Check if the phone number matches either pattern
@@ -79,7 +79,7 @@ const UsersDetailForm = () => {
             document.getElementById('userDetailsForm').style.display = 'none';
             document.getElementById('entryViewModalTopContainer').style.display = 'block';
             // email transporter
-            const transporter = new nodemailer.createTransport({
+            const transporter = nodemailer.createTransport({
                 host: 'smtp.google.com',
                 port: 587,
                 secure: true,
