@@ -2,19 +2,16 @@ import React, {useState} from "react";
 import axios from 'axios';
 require('../styles/allUsersEntryViewModal.css');
 
-const AllUsersEntryViewModal = () => {
+const AllUsersEntryViewModal = async () => {
 
     const [allEntries, setAllEntries] = useState([]);
-    const getAllUsers = async () => {
-        await axios.get('https://eleadsmediabackendtask.onrender.com/api/allEntries')
-            .then(res =>{
-                setAllEntries(() => res.data);
-            })
-            .catch(error =>{
-                console.log(`moh says error retriving data...${error}`);
-            });
-    };
-    getAllUsers();
+    await axios.get('https://eleadsmediabackendtask.onrender.com/api/allEntries')
+        .then(res =>{
+            setAllEntries(() => res.data);
+        })
+        .catch(error =>{
+            console.log(`moh says error retriving data...${error}`);
+        });
 
     let serialNo = 0;
     // Get all users entries
