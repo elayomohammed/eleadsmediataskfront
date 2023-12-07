@@ -3,7 +3,6 @@ import AllUsersEntryViewModal from './AllUsersEntryViewModal';
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from 'axios';
 import nodemailer from 'nodemailer';
-require('dotenv').config();
 require('buffer');
 require('../styles/usersDetailForm.css');
 
