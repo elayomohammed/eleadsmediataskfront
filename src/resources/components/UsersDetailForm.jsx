@@ -41,29 +41,25 @@ const UsersDetailForm = () => {
 
     // insert user transaction
     const insertUser = async () => {
-        try{
-            const reqBody = {
-                fName: userDetails.fName,
-                lName: userDetails.lName,
-                email: userDetails.email,
-                dob: userDetails.dob,
-                phone: userDetails.phone,
-                userID: userDetails.userID,
-            };
+        const reqBody = {
+            fName: userDetails.fName,
+            lName: userDetails.lName,
+            email: userDetails.email,
+            dob: userDetails.dob,
+            phone: userDetails.phone,
+            userID: userDetails.userID,
+        };
 
-            const headers = {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'}
+        const headers = {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'}
 
-            validatedateOfBirth(reqBody.dob)?
-            axios.post('https://eleadsmediabackendtask.onrender.com/api/insert', reqBody, {headers})
-                .then(res =>{
-                    console.log(res);
-                })
-                .catch(error =>{
-                    console.error(`elayo says error inserting data: ${error}`);
-                }) : window.alert("Your age must be 18 years old or older...");
-        }catch(error){
-            console.log(`error: ${error}`);
-        }
+        validatedateOfBirth(reqBody.dob)?
+        axios.post('https://eleadsmediabackendtask.onrender.com/api/insert', reqBody, {headers})
+            .then(res =>{
+                console.log(res);
+            })
+            .catch(error =>{
+                console.error(`elayo says error inserting data: ${error}`);
+            }) : window.alert("Your age must be 18 years old or older...");
     }
 
     // handling formsubmission
