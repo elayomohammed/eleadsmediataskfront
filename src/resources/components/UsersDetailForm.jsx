@@ -2,6 +2,8 @@ import React, {useState} from "react";
 import AllUsersEntryViewModal from './AllUsersEntryViewModal';
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from 'axios';
+import nodemailer from 'nodemailer';
+require('dotenv').config();
 require('buffer');
 require('../styles/usersDetailForm.css');
 
@@ -28,6 +30,17 @@ const UsersDetailForm = () => {
         });
     }
 
+    function validatedateOfBirthr(dateOfBirth) {
+        // Regular expression patterns for Nigeria and India phone numbers
+      
+        // Check if the phone number matches either pattern
+        if (!new Date().toDateString() - dateOfBirth >= 18) {
+          return false;
+        } else {
+          return true;
+        }
+    }
+
     // insert user transaction
     const insertUser = async () => {
         try{
@@ -41,18 +54,18 @@ const UsersDetailForm = () => {
             };
 
             const headers = {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'}
-            /*const insertTx = await fetch('https://eleadsmediabackendtask.onrender.com/api/insert', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
-                body: JSON.stringify(reqBody),
-            });*/
 
-            axios.post('https://eleadsmediabackendtask.onrender.com/api/insert', reqBody, {headers})
-                .then(res =>{
-                })
-                .catch(error =>{
-                    console.error(`elayo says error inserting data: ${error}`);
-                });
+            if (validatedateOfBirth(dob)) {
+                axios.post('https://eleadsmediabackendtask.onrender.com/api/insert', reqBody, {headers})
+                    .then(res =>{
+                        console.log(res.json());
+                    })
+                    .catch(error =>{
+                        console.error(`elayo says error inserting data: ${error}`);
+                    });
+            } else {
+                window.alert("Your age must be 18 years old or older...");
+            }
         }catch(error){
             console.log(`error: ${error}`);
         }
@@ -65,6 +78,30 @@ const UsersDetailForm = () => {
         if(insertUser()){
             document.getElementById('userDetailsForm').style.display = 'none';
             document.getElementById('entryViewModalTopContainer').style.display = 'block';
+            // email transporter
+            const transporter = new nodemailer.createTransport({
+                host: 'smtp.google.com',
+                port: 587,
+                secure: true,
+                auth: {
+                    user: 'thefreethinkeer@gmail.com',
+                    pass: process.env.TRNASPORTER_PASS
+                }
+            });
+            // mail configuration
+            const mailParams = {
+                from: '"eLeads Media" thefreethinkeer@gmail.com',
+                to: userDetails.email,
+                subject: 'successfull input entry',
+                text: `your input for user ${userDetails.email} have been saved successfully to the server...`
+            };
+            transporter.sendMail(mailParams, (error, info) =>{
+                if(error){
+                    console.log(error);
+                }else{
+                    console.log('email sent', info.messageId);
+                }
+            });
             return true;
         }else{
             console.log('theres a problem inserting user data...');
