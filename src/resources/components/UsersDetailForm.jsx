@@ -56,7 +56,7 @@ const UsersDetailForm = () => {
             validatedateOfBirth(reqBody.dob)?
             axios.post('https://eleadsmediabackendtask.onrender.com/api/insert', reqBody, {headers})
                 .then(res =>{
-                    console.log(res.json());
+                    console.log(res);
                 })
                 .catch(error =>{
                     console.error(`elayo says error inserting data: ${error}`);
