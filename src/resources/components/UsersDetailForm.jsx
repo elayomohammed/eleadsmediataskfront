@@ -52,6 +52,19 @@ const UsersDetailForm = () => {
 
         const headers = {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'}
         
+        /*
+        if(validatedateOfBirth(reqBody.dob)){
+            axios.post('https://eleadsmediabackendtask.onrender.com/api/insert', reqBody, {headers})
+                .then(res =>{
+                    console.log(res);
+                })
+                .catch(error =>{
+                    console.error(`elayo says error inserting data: ${error}`);
+                })
+        }else{
+            console.log("Your age must be 18 years old or older...");
+        }
+        */
         validatedateOfBirth(reqBody.dob)?
         axios.post('https://eleadsmediabackendtask.onrender.com/api/insert', reqBody, {headers})
             .then(res =>{
