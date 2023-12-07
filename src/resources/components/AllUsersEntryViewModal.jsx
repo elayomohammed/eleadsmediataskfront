@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import axios from 'axios';
 require('../styles/allUsersEntryViewModal.css');
 
-const AllUsersEntryViewModal = async () => {
+const AllUsersEntryViewModal = () => {
 
     const [allEntries, setAllEntries] = useState([]);
     const getAllUsers = async () => {
