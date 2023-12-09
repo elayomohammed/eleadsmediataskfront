@@ -52,7 +52,7 @@ const UsersDetailForm = () => {
         const headers = {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'}
         
         if(validatedateOfBirth(reqBody.dob)){
-            await axios.post('https://eleadsmediabackendtask.onrender.com/api/insert', reqBody, {headers})
+            axios.post('https://eleadsmediabackendtask.onrender.com/api/insert', reqBody, {headers})
                 .then(res =>{
                     console.log(res);
                     return true;
