@@ -76,6 +76,8 @@ const UsersDetailForm = () => {
             return true;
         }else{
             console.log('theres a problem inserting user data...');
+            document.getElementById('userDetailsForm').style.display = 'block';
+            document.getElementById('entryViewModalTopContainer').style.display = 'none';
             return false;
         }
     }
