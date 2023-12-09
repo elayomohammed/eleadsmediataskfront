@@ -73,13 +73,13 @@ const UsersDetailForm = () => {
         if(insertUser()){
             document.getElementById('userDetailsForm').style.display = 'none';
             document.getElementById('entryViewModalTopContainer').style.display = 'block';
-            return true;
         }else{
             console.log('theres a problem inserting user data...');
             document.getElementById('userDetailsForm').style.display = 'block';
             document.getElementById('entryViewModalTopContainer').style.display = 'none';
             return false;
         }
+        return true;
     }
 
     // Auth0 settup
