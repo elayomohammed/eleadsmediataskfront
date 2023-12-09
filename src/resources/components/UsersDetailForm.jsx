@@ -31,7 +31,7 @@ const UsersDetailForm = () => {
     function validatedateOfBirth(dateOfBirth) {      
         // Check if the phone number matches either pattern
         const dob = new Date(dateOfBirth);
-        if (new Date().getFullYear() - dob.getFullYear >= 18) {
+        if (new Date().getFullYear() - dob.getFullYear() >= 18) {
           return true;
         } else {
           return false;
